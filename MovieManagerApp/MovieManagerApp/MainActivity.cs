@@ -23,6 +23,9 @@ namespace MovieManagerApp
             //Adds the Click handlers to the buttons
             newRandBtn.Click += NewRandBtn_Click;
             viewAlreadySeenBtn.Click += ViewAlreadySeenBtn_Click;
+
+            //Makes database and test data
+            //MovieDatabaseWorker.MakeTestDB();
         }
 
         /// <summary>

@@ -26,9 +26,10 @@ namespace MovieManagerApp
             ListView seenMoviesListView = FindViewById<ListView>(Resource.Id.seenMoviesListView);
             //Fills the list view with data
             FillListView(seenMoviesListView);
-            //adds an item click listener
+            //adds an item click listener and enables fast scroll
             seenMoviesListView.ItemClick += SeenMoviesListView_ItemClick;
-            
+            seenMoviesListView.FastScrollEnabled = true;
+
         }
 
         /// <summary>
@@ -37,12 +38,13 @@ namespace MovieManagerApp
         private void FillListView(ListView seenMoviesListView)
         {
             //Seen Movieslist
-            string[] movieslist = { "fast and furious 1", "fast and furious 2",
-                "fast and furious 3", "fast and furious 4", "fast and furious 5" };
+            List<Movie> movieList = MovieDatabaseWorker.RetrieveAllMovies();
 
             //Makes and adapter so data can be put into listView
-            ArrayAdapter<string> seenMoviesAdapter = new ArrayAdapter<string>(this, 
-                Resource.Layout.ListViewLayout, Resource.Id.movieTitle, movieslist);
+            //ArrayAdapter<Movie> seenMoviesAdapter = new ArrayAdapter<Movie>(this, 
+            //    Resource.Layout.ListViewLayout, Resource.Id.movieTitle, movieList);
+
+            MovieListAdapter seenMoviesAdapter = new MovieListAdapter(this, movieList);
 
             //Gets the listview and sets the adapter
             seenMoviesListView.Adapter = seenMoviesAdapter;
