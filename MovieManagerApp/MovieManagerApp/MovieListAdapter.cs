@@ -12,10 +12,10 @@ using Android.Widget;
 
 namespace MovieManagerApp
 {
-    class MovieListAdapter : BaseAdapter<Movie>
+    public class MovieListAdapter : BaseAdapter<Movie>
     {
-        List<Movie> movieList;
-        Context context;
+        private List<Movie> movieList;
+        private Context context;
 
         public MovieListAdapter(Context context, List<Movie> movieList)
         {

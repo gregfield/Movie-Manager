@@ -15,6 +15,8 @@ namespace MovieManagerApp
     [Activity(Label = "Seen Movies Activity")]
     public class SeenMoviesActivity : Activity
     {
+        private List<Movie> movieList;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -38,12 +40,9 @@ namespace MovieManagerApp
         private void FillListView(ListView seenMoviesListView)
         {
             //Seen Movieslist
-            List<Movie> movieList = MovieDatabaseWorker.RetrieveAllMovies();
+            movieList = MovieDatabaseWorker.RetrieveAllMovies();
 
-            //Makes and adapter so data can be put into listView
-            //ArrayAdapter<Movie> seenMoviesAdapter = new ArrayAdapter<Movie>(this, 
-            //    Resource.Layout.ListViewLayout, Resource.Id.movieTitle, movieList);
-
+            //Makes an adapter so data can be put into listView
             MovieListAdapter seenMoviesAdapter = new MovieListAdapter(this, movieList);
 
             //Gets the listview and sets the adapter
@@ -57,7 +56,10 @@ namespace MovieManagerApp
         /// <param name="e"></param>
         private void SeenMoviesListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            Toast.MakeText(this, e.Position.ToString(), ToastLength.Short).Show();
+            MovieInfoFragment infoFragment = new MovieInfoFragment();
+            FragmentTransaction ft = FragmentManager.BeginTransaction();
+            ft.Add(Resource.Id.movieInfoFragmentContainer, infoFragment);
+            ft.Commit();
         }
     }
 }
