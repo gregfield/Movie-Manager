@@ -88,6 +88,7 @@
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeenMoviesActivity.cs" />
+    <Compile Include="WebMovieDatabaseWorker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
